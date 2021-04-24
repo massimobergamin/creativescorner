@@ -1,0 +1,58 @@
+.threadsComponentContainer {
+  height: 10px;
+}
+
+.ulContainer {
+  margin: auto;
+  width: 600px;
+  padding: 40px;
+  background: rgba(14, 18, 48, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.rowWrap {
+  margin: 0 30px 30px 0px;
+  padding: 0;
+  color: rgb(15, 15, 15);
+  text-align: center;
+}
+
+.threadRow {
+  font-family: sans-serif;
+  display: flex;
+  text-align:left;
+  padding: 10px;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgba(92, 106, 212, 0.5);
+  border-color: rgb(109, 108, 108);
+  box-shadow: -1px -1px 4px rgb(72, 136, 233), 1px 1px 4px #899ee9;
+}
+
+.timeStamp {
+  float: left;
+}
+
+.threadAndDateContainer {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.threadTopic {
+  margin: auto;
+}
+
+.buttonContainer {
+  width: 100%;
+}
+
+.delete {
+  margin-right: 10px;
+  margin-top: 40px;
+  height: 20%;
+  float: right;
+  box-shadow: -1px -1px 4px #fff, 1px 1px 4px #babecc;
+}

@@ -1,0 +1,17 @@
+
+
+.repliesContainer {
+  display: flex;
+  flex-direction: column;
+  float: right;
+  margin-right: 40px;
+}
+
+.repliesUL {
+  list-style-type: none;
+}
+
+.replyRow {
+  border-style: solid;
+  padding: 10px;
+}
