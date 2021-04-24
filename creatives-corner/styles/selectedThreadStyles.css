@@ -15,7 +15,7 @@
 }
 
 .titleSelected {
-  padding-top: 20px;
+  padding-top: 25px;
 }
 
 .selectedThreadContainer {
@@ -28,7 +28,7 @@
   font-family: sans-serif;
   height: 200px;
   margin:0;
-  background-color: rgba(92, 106, 212, 0.5);
+  background-color: rgba(12, 23, 105, 0.5);
   border-color: rgb(109, 108, 108);
   box-shadow: -1px -1px 4px rgb(72, 136, 233), 1px 1px 4px #899ee9;
 }

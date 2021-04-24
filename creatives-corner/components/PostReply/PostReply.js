@@ -22,7 +22,6 @@ const PostReply = ({ replyHandler, threadID }) => {
   }
 
   const submitHandler = e => {
-    console.log(reply)
     e.preventDefault();
     replyHandler(reply);
     resetForm();

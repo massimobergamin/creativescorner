@@ -10,12 +10,14 @@ const Replies = ({ replies, threadID }) => {
       <div className="repliesContainer">
         <ul className="repliesUL">
           {threadReplies.map(reply => (
+            <div className="replyRowContainer">
             <li className="replyRow" key={ reply.id }>
               <div>
               <h2>{ reply.content }</h2>
               <h6>{ moment(reply.date).format('LL') }</h6>
               </div>
             </li>
+            </div>
           ))
         }
         </ul>

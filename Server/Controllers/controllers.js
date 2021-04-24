@@ -63,6 +63,7 @@ exports.postReply = async (req, res) => {
     const newReply = await pool.query(`INSERT INTO replies_temp (topicID, content) 
     VALUES ('${req.body.topicid}', '${req.body.content}' ) RETURNING *`);
     res.status(200);
+    console.log(newReply.rows);
     res.send(newReply.rows);
   } catch (error) {
     console.log(error);
@@ -113,11 +114,8 @@ exports.login = async (req, res) => {
     const user = await pool.query(`SELECT * FROM users WHERE email = '${email}'`);
    
     const validatedPass = await bcrypt.compare(userPassword, user.rows[0].password);
-    console.log(validatedPass)
     if (!validatedPass) throw new Error();
-    console.log(user.rows[0].id)
-    //req.session.uid = user.rows[0].id;
-
+    req.session.uid = user.rows[0].id;
     res.status(200).send(user.rows[0]);
   } catch (error) {
     res

@@ -1,17 +1,31 @@
 
 
 .repliesContainer {
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
   float: right;
-  margin-right: 40px;
+  width: 70%;
+  margin: 20px;
+  padding: 0px;
+  background: rgba(41, 52, 141, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
 }
 
 .repliesUL {
   list-style-type: none;
 }
 
+.replyRowContainer {
+
+}
+
 .replyRow {
-  border-style: solid;
+  text-align: left;
   padding: 10px;
+  margin-bottom: 80px;
+  margin-right: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  color: rgb(255, 255, 255);
 }
