@@ -16,11 +16,6 @@ Layout
   o	Forum Topics
 
 
-Questions to ask:
-•	Do I have to make a table for each thread? (probably yes)
-•	Would a reply get added in a way as in threadComment.question.reply? since itll look like an object { Thread: { post: string, question: [ array os strings, and then eeach element in the Question array, can have another nested array of replies]
-
-
 **Backend**
 
 Threads (nested comments – 3 layers)
@@ -35,35 +30,7 @@ Threads (nested comments – 3 layers)
 •	Replies to questions
 
 
-Table Demonstration for comments:
-
-Genre(House) {
-	Topic1(EQ) { 
-
-		Thread1 { 
-
-			Question1 { 
-				Reply1,
-				Reply2,
-				Reply3….
-			}
-
-			Question2 { 
-			}…..
-
-	  }
-
-		Thread2 { 
-		}
-
-	}
-
-	Topic2 { 
-	}
-
-	Topic3 { 
-	}….
-}
+Tables
 
 1. Genre 
   - id (default)

@@ -39,6 +39,6 @@ export const createUser = async (user) => {
 
 //Login User
 export const loginUser = async (user) => {
-  return await axios.post('http://localhost:3050/user/login', user)
+  return await axios.post('http://localhost:3050/user/login', user, {credentials: true})
   .then((response) => response, err => err)
 }
