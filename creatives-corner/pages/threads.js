@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import { getThreads, deleteThread } from '../Services/Services';
 import { deleteReply } from '../Services/Services';
 
-const ThreadPage = () => {
+const ThreadPage = ({setLoggedUser, loggedUser}) => {
+
+
   const [threads, setThreads] = useState([]);
 
   useEffect(() => {
@@ -26,10 +28,13 @@ const ThreadPage = () => {
   return (
     <div>
       { threads.length > 0 ? (
+        <div>
           <ThreadList 
           threads={threads}
           deleteHandler={deleteHandler}
+          loggedUser={loggedUser}
           />
+          </div>
           ) : null }
     </div>
   )

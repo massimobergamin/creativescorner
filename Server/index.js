@@ -16,7 +16,6 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-
 app.use(
   session({
     // the store property, if not specified, defaults to the in-memory store

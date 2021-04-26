@@ -1,9 +1,12 @@
 import PostThread from '../components/PostThread/index'
 import { postThread } from '../Services/Services'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import UserContext from '../utils/UserContext'
 
-const Post = () => {
+const Post = ({ loggedUser }) => {
   const [threads, setThreads] = useState([]);
+
+  const userData = UserContext.user;
 
   const postHandler = thread => {
     postThread(thread)
@@ -17,6 +20,8 @@ const Post = () => {
     <div>
       <PostThread
         postHandler={postHandler}
+        userData={userData}
+        loggedUser={loggedUser}
       />
     </div>
   )

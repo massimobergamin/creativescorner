@@ -1,0 +1,35 @@
+.navbar {
+  background: rgba(14, 18, 48, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: row;
+  margin-right: 70px;
+  margin-left: 70px;
+  justify-content: space-between;
+  color: white;
+}
+
+.navTagBox {
+  text-align: center;
+  background-color: rgba(58, 67, 136, 0.5);
+  border-color: rgb(109, 108, 108);
+  box-shadow: -1px -1px 4px rgb(38, 72, 122), 1px 1px 4px #566494;
+  height: 25px;
+  width: 130px;
+  margin-bottom: 20px;
+}
+
+.musicButton {
+  margin-top: 15px;
+  box-shadow: -6px -5px 9px rgb(38, 72, 122), 1px 4px 10px #8094d8;
+}
+
+.navTagContainer {
+ 
+  
+}
+

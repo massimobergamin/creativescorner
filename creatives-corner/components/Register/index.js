@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { createUser } from '../../Services/Services'
-import auth from '../../utils/auth';
+import userContext from '../../utils/UserContext';
 import { useRouter } from 'next/router';
 
 
-const RegisterComponent = ({ setIsAuthenticated }) => {
+const RegisterComponent = ({ setLoggedUser, setIsAuthenticated }) => {
   const router = useRouter();
 
   const initialState = {
@@ -23,21 +23,22 @@ const RegisterComponent = ({ setIsAuthenticated }) => {
     }))
   }
 
-  const resetForm = () => {
-    setUser(initialState);
-  }
+  // const resetForm = () => {
+  //   setUser(initialState);
+  // }
 
   const submitHandler = async (e) => {
     e.preventDefault();
     const res = await createUser(user);
     console.log(res);
-
+    
     if (res.error) {
       alert(`${res.message}`);
-      setUser(initialState);
     } else {
+      setUser(initialState);
       setIsAuthenticated(true);
-      auth.login(() => router.push('/profile'));
+      setLoggedUser(res.data)
+      userContext.login(() => router.push('/home'));
     }
 
     // if (res.data.message) {

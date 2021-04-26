@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import moment from 'moment';
 
-const ThreadList = ({ threads, deleteHandler }) => {
+const ThreadList = ({ threads, deleteHandler, loggedUser }) => {
 
   return (
     <div className="threadsComponentContainer">
+      
       <div className="ulContainer">
       {/* //<h2 className="pathTags">Threads</h2> */}
       <ul>
@@ -21,9 +22,11 @@ const ThreadList = ({ threads, deleteHandler }) => {
                 avoid having the button fire when the page renders. */}
                 <h6 className="timeStamp">{moment(thread.date).format('MMMM Do YYYY')}</h6>
               </div>
+              {thread.username === loggedUser[0].name ? (
               <div className="buttonContainer">
                 <button onClick={() => deleteHandler(thread.id)}className="delete">X</button>
               </div>
+              ) : null }
             </li>
           </div>
           ))

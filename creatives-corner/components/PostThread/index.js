@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
+const PostThread = ({ postHandler, loggedUser }) => {
 
-const PostThread = ({ postHandler }) => {
+  const userName = loggedUser[0].name;
 
   const initialState = {
     title: 'title',
     genre: 'genre',
-    content: 'details'
+    content: 'details',
+    user: userName
   }
+  console.log(userName);
 
   const [ topic, setTopic ] = useState(initialState);
 
@@ -24,8 +27,10 @@ const PostThread = ({ postHandler }) => {
   }
 
   const submitHandler = e => {
+    console.log(document.cookie)
     e.preventDefault();
     postHandler(topic);
+    alert('Posted!')
     resetForm();
   }
 

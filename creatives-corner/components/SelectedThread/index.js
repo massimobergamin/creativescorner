@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import moment from 'moment';
+import Linkify from 'react-linkify';
 
 const SelectedThread = ( { threads, threadID } ) => {
   
@@ -13,8 +14,14 @@ const SelectedThread = ( { threads, threadID } ) => {
           <li className="selectedRow" key={ thread.id }>
             <div className="contentWrap">
             <h6 className="dateOnSelected">{moment(thread.date).format('MMMM Do YYYY')}</h6>
-            <h2 className="titleSelected"> { thread.title } </h2>
-            <h3> { thread.content } </h3>
+            <h3 className="titleSelected"> { thread.title } </h3>
+            <Linkify>
+            <div>
+            <div className="contentContainer">
+            <p> { thread.content } </p>
+            </div>
+            </div>
+            </Linkify>
             </div>
           </li>
           ))

@@ -4,9 +4,9 @@ import { getThreads } from '../../Services/Services'
 import SelectedThread from '../../components/SelectedThread/index'
 import PostReply from '../../components/PostReply/PostReply';
 import Replies from '../../components/Replies/replies';
-import { getReplies, postReply } from '../../Services/Services';
+import { getReplies, postReply, deleteReply } from '../../Services/Services';
 
-const Thread = () => {
+const Thread = ({setLoggedUser, loggedUser}) => {
 
   const [selectedThread, setSelectedThread] = useState([]);
   const [replies, setReplies] = useState([]);
@@ -36,6 +36,14 @@ const Thread = () => {
     .catch(err => console.log(err))
   }
 
+  const deleteHandler = id => {
+    deleteReply(id)
+    .then(res => {
+      const newReplyList = replies.filter(reply => reply.id !== id);
+      setReplies(newReplyList);
+    })
+  }
+
   const router = useRouter();
   const threadID = router.query.id;
 
@@ -52,6 +60,8 @@ const Thread = () => {
       <Replies
       replies={replies}
       threadID={threadID}
+      deleteHandler={deleteHandler}
+      loggedUser={loggedUser}
       />
     </div>
   )

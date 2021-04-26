@@ -26,8 +26,8 @@ exports.getSelectedThread = async (req, res) => {
 
 exports.postThread = async (req, res) => {
   try {
-    const newThread = await pool.query(`INSERT INTO topic_temp (title, genre, content) 
-    VALUES ('${req.body.title}', '${req.body.genre}', '${req.body.content}' ) RETURNING *`);
+    const newThread = await pool.query(`INSERT INTO topic_temp (title, genre, content, username) 
+    VALUES ('${req.body.title}', '${req.body.genre}', '${req.body.content}', '${req.body.user}' ) RETURNING *`);
     res.status(200);
     res.send(newThread.rows);
   } catch (error) {
@@ -115,8 +115,9 @@ exports.login = async (req, res) => {
    
     const validatedPass = await bcrypt.compare(userPassword, user.rows[0].password);
     if (!validatedPass) throw new Error();
-    req.session.uid = user.rows[0].id;
-    res.status(200).send(user.rows[0]);
+    // req.session.uid = user.rows[0].id;
+    
+    res.status(200).send(user.rows);
   } catch (error) {
     res
     .status(401)

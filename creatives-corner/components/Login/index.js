@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import auth from '../../utils/auth';
+import userContext from '../../utils/UserContext';
 import { loginUser } from '../../Services/Services';
 import { useRouter } from 'next/router';
 
-const LoginComponent = ({setIsAuthenticated}) => {
+const LoginComponent = ({ setAuthenticated, setLoggedUser }) => {
+
   const router = useRouter();
 
   const initialState = {
     name: 'Name',
     email: 'Email',
-    userPassword: 'Password'
+    userPassword: 'Password',
   }
   
   const [ user, setUser ] = useState(initialState);
@@ -22,25 +23,26 @@ const LoginComponent = ({setIsAuthenticated}) => {
     }));
   };
 
-  const resetForm = () => {
-    setUser(initialState);
-  }
+  // const resetForm = () => {
+  //   setUser(initialState);
+  // }
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(user)
 
-    const res = await loginUser(user);
-    console.log(res);
-    if (res.data.message) {
-
-      alert(`${res.response.data.message}`);
-      setUser(initialState);
-    } else {
-      setIsAuthenticated(true);
-      auth.login(() => router.push('/home'));
-      resetForm();
+    try {
+      const res = await loginUser(user);
+      if (!res.error) {
+        setUser(initialState);
+        setAuthenticated(true);
+        setLoggedUser(res.data)
+        userContext.login(() => router.push('/home'));
+        // resetForm();
+      }
+    } catch (error) {
+      console.log(error)
     }
+
   }
 
   return (
