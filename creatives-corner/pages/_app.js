@@ -6,7 +6,8 @@ import '../styles/postReplyStyles.css';
 import '../styles/repliesStyles.css';
 import '../styles/loginStyles.css';
 import '../styles/registerStyles.css';
-import '../styles/navbarStyles.css'
+import '../styles/navbarStyles.css';
+import '../styles/profileStyles.css';
 import { useState } from 'react'
 import UserContext from '../utils/UserContext';
 import Navbar from '../components/Navbar/navbar'
@@ -35,6 +36,7 @@ function MyApp({ Component, pageProps }) {
       loggedUser={loggedUser}
       setLoggedUser={setLoggedUser}
       {...pageProps} 
+      
       /> 
     </div>
   

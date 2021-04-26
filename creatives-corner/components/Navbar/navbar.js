@@ -1,9 +1,12 @@
 import UserContext from '../../utils/UserContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import useSound from 'use-sound';
 import { Howl, Howler } from 'howler';
 import ReactAudioPlayer from 'react-audio-player';
 import song1 from '../../public/song1.mp3';
+
+
 
 const Navbar = ({ setLoggedUser }) => {
   const router = useRouter();
@@ -18,14 +21,12 @@ const Navbar = ({ setLoggedUser }) => {
 
     console.log("hello")
   }
-
-
-
-  const playTrack = () => {
-    const audio = document.getElementById("audioplayer")
-    audio.play();
-    console.log('ehl')
-  }
+    const playSong = () => {
+      let sound = new Audio(song1)
+      let sound2 = document.getElementById("audioplayer")
+      sound2.play();
+    }
+  
 
   return (
 
@@ -33,13 +34,13 @@ const Navbar = ({ setLoggedUser }) => {
       <div className="navContainer">
         <div className="navTagBoxContainer">
             <div className="musicButton">
-              <button onClick={() => playTrack()}>🎵</button>
+              <button onClick={() => playSong()}>🎵</button>
               {/* <ReactAudioPlayer 
               controls
-              src='../../public/song1.mp3'
+              src={'../../public/song1.mp3'}
               > */}
               <audio controls id="audioplayer">
-                <source id="song"src={'../../public/song1.mp3'} type='audio/mpeg'/>
+                <source src={require("../../public/song1.mp3")} type='audio/mpeg'/>
               </audio>
               {/* </ReactAudioPlayer> */}
             </div>
