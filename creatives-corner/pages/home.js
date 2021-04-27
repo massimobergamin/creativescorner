@@ -49,15 +49,7 @@ const Home = ({ setAuthenticated, setLoggedUser }) => {
       <div className="bannerContainer">
       <h1 className="userBanner">Welcome {name} </h1>
       </div>
-      <h1>Todo</h1>
-      <h3>
-        -EMBED links
-        - SEARCH by Genre
-        - CREATE private groups
-          (users added to a list have access to the page and can post and it's linked to their pofile page)
-          "Groups data base" and the name of the group will link them all together and then filter only the specific name that the ID is attach to
-        - FOLLOW profiles
-      </h3>
+    
 
       <div className={styles.container}>
           <div className="homeWrapper"> 
