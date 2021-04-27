@@ -8,7 +8,32 @@
   border-radius: 10px;
 }
 
-.dateOnSelected {
+.headerContainer {
+ 
+}
+
+.titleContainer {
+  float: left;
+}
+
+.postedDetailsContainer {
+  float: right;
+  margin-top: 8px;
+  margin-right:8px;
+  font-size: 3mm;
+}
+
+.postedDate {
+  padding: 0px;
+  margin: 0px;
+}
+
+.postedUser {
+  padding: 0px;
+  margin: 0px;
+}
+
+.postedDetails {
   float: right;
   margin-right: 10px;
   padding: 0px;

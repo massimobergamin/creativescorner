@@ -1,11 +1,30 @@
 import Profile from '../components/Profile/index'
 import { useState, useEffect } from 'react';
-import { getThreads, deleteThread } from '../Services/Services';
+import { getThreads, deleteThread, profile } from '../Services/Services';
 import userContext from '../utils/UserContext';
 
-const ProfileDashboard = ({loggedUser}) => {
+const ProfileDashboard = ({loggedUser, setLoggedUser, setAuthenticated}) => {
   const initialState = userContext.isAuthenticated();
   const [isAuthenticated, setIsAuthenticated] = useState(initialState);
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const userInfo = await profile();
+      if (userInfo) {
+        handleAuth(userInfo);
+      }
+      else {
+        console.log('no user info found');
+        router.push('/')
+      }
+    };
+    getProfile();
+  }, []);
+
+  const handleAuth = (user) => {
+    setLoggedUser(user);
+    setAuthenticated(true)
+  }
 
   const [threads, setThreads] = useState([]);
 

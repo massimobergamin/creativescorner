@@ -84,20 +84,19 @@ exports.deleteReply = (req, res) => {
 
 //Register Controller
 exports.createUser = async (req, res) => {
-
   const { name, email, userPassword } = req.body;
-
   const user = await pool.query(`SELECT DISTINCT email FROM users WHERE email = '${email}'`);
-
   if (user.rows.length)
     return res
     .status(409)
     .send({ error: '409', message: 'User with email already exists'});
-  
   try {
     let hashedPassword = await bcrypt.hash(userPassword, 10);
     const newUser = await pool.query(`INSERT INTO users (name, email, password)
     VALUES ('${name}', '${email}', '${hashedPassword}')`)
+    console.log("newUSer")
+    console.log(newUser)
+    req.session.uid = user.rows[0].id;
     res.status(200);
     res.send(newUser);
   } catch (error) {
@@ -110,17 +109,44 @@ exports.createUser = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, userPassword } = req.body;
-   
     const user = await pool.query(`SELECT * FROM users WHERE email = '${email}'`);
-   
     const validatedPass = await bcrypt.compare(userPassword, user.rows[0].password);
     if (!validatedPass) throw new Error();
-    // req.session.uid = user.rows[0].id;
-    
+    req.session.uid = user.rows[0].id;
     res.status(200).send(user.rows);
   } catch (error) {
     res
     .status(401)
     .send({ error: '401', message: 'Username or password is incorrect'})
   }
+}
+
+//persist
+exports.profile = async (req, res) => {
+  // REMOVE-START
+  try {
+    console.log('profile')
+    console.log(req.user)
+    const { id, name, email } = await req.user[0];
+    const user = { id, name, email };
+    console.log(user)
+    res.status(200).send(user);
+  } catch {
+    res.status(404).send({ error, message: 'User not found' });
+  }
+  // REMOVE-END
+};
+
+exports.logout = (req, res) => {
+  
+  req.session.destroy((error) => {
+    if (error) {
+      res
+      .status(500)
+      .send({ error, message: 'Could not log out, please try again'})
+    } else {
+      res.clearCookie('sid');
+      res.sendStatus(200);
+    }
+  })
 }

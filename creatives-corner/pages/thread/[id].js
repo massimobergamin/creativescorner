@@ -1,12 +1,34 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router';
-import { getThreads } from '../../Services/Services'
+import { getThreads, profile } from '../../Services/Services'
 import SelectedThread from '../../components/SelectedThread/index'
 import PostReply from '../../components/PostReply/PostReply';
 import Replies from '../../components/Replies/replies';
 import { getReplies, postReply, deleteReply } from '../../Services/Services';
 
-const Thread = ({setLoggedUser, loggedUser}) => {
+const Thread = ({ setLoggedUser, loggedUser, setAuthenticated }) => {
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const userInfo = await profile();
+      console.log(userInfo)
+      if (userInfo) {
+        handleAuth(userInfo);
+      }
+      else {
+        console.log('no user info found');
+        router.push('/')
+      }
+    };
+    getProfile();
+  }, []);
+
+  const handleAuth = (user) => {
+    setLoggedUser(user);
+    console.log("handleAuth")
+    console.log(loggedUser)
+    setAuthenticated(true)
+  }
 
   const [selectedThread, setSelectedThread] = useState([]);
   const [replies, setReplies] = useState([]);
@@ -52,10 +74,12 @@ const Thread = ({setLoggedUser, loggedUser}) => {
       <SelectedThread
       threads={selectedThread}
       threadID={threadID}
+      loggedUser={loggedUser}
       />
       <PostReply
       replyHandler={replyHandler}
       threadID={threadID}
+      loggedUser={loggedUser}
       />
       <Replies
       replies={replies}

@@ -19,7 +19,17 @@ a {
 }
 
 /* Pege components */
+
+/* home page */
 .homeWrapper {
+  text-align: center;
+}
+
+.userBanner {
+  color: white;
+}
+
+.bannerContainer {
   text-align: center;
 }
 

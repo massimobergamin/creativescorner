@@ -1,48 +1,37 @@
 import UserContext from '../../utils/UserContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import useSound from 'use-sound';
-import { Howl, Howler } from 'howler';
-import ReactAudioPlayer from 'react-audio-player';
-import song1 from '../../public/song1.mp3';
+import { logout } from '../../Services/Services'
 
-
-
-const Navbar = ({ setLoggedUser }) => {
+const Navbar = ({ setLoggedUser, setAuthenticated }) => {
   const router = useRouter();
   
   const logoutUser = () => {
-    const logoutUserContext = {};
-    //set authentication to false
-    //remove user data from state
-    //route to login page
-    setLoggedUser(logoutUserContext);
-    UserContext.logout(() => router.push('/login'));
-
+    logout();
+    handleAuth();
     console.log("hello")
   }
-    const playSong = () => {
-      let sound = new Audio(song1)
-      let sound2 = document.getElementById("audioplayer")
-      sound2.play();
-    }
   
+  const handleAuth = () => {
+    const logoutUserContext = {};
+    setLoggedUser(logoutUserContext);
+    setAuthenticated(false)
+    UserContext.logout(() => router.push('/login'));
+  }
+
 
   return (
-
     <div className="navbar">
       <div className="navContainer">
         <div className="navTagBoxContainer">
             <div className="musicButton">
-              <button onClick={() => playSong()}>🎵</button>
-              {/* <ReactAudioPlayer 
-              controls
-              src={'../../public/song1.mp3'}
-              > */}
-              <audio controls id="audioplayer">
-                <source src={require("../../public/song1.mp3")} type='audio/mpeg'/>
+              <audio id="player" volume="0">
+              <source src="/song3.mp3" type='audio/mpeg'/>
               </audio>
-              {/* </ReactAudioPlayer> */}
+              <button className="playButton"  onClick={() => document.getElementById('player').play()}>🎵</button> 
+              <button className="pauseButton"  onClick={() => document.getElementById('player').pause()}>||</button> 
+              {/* <button onclick={() => document.getElementById('player').volume += 0.1}>Vol +</button> 
+              <button onclick={() => document.getElementById('player').volume -= 1}>Vol -</button>  */}
             </div>
         </div>
         <div className="navTagBoxContainer">

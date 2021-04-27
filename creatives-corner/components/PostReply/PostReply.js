@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const PostReply = ({ replyHandler, threadID }) => {
-  
+const PostReply = ({ replyHandler, threadID, loggedUser }) => {
+
   const initialState = {
     content: '',
     topicid: +threadID
@@ -23,6 +23,7 @@ const PostReply = ({ replyHandler, threadID }) => {
 
   const submitHandler = e => {
     e.preventDefault();
+    console.log(reply)
     replyHandler(reply);
     resetForm();
   }

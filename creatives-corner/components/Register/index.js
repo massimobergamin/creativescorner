@@ -23,30 +23,18 @@ const RegisterComponent = ({ setLoggedUser, setIsAuthenticated }) => {
     }))
   }
 
-  // const resetForm = () => {
-  //   setUser(initialState);
-  // }
-
   const submitHandler = async (e) => {
     e.preventDefault();
-    const res = await createUser(user);
-    console.log(res);
-    
-    if (res.error) {
-      alert(`${res.message}`);
-    } else {
-      setUser(initialState);
-      setIsAuthenticated(true);
-      setLoggedUser(res.data)
-      userContext.login(() => router.push('/home'));
+    try {
+      const res = await createUser(user);
+      if (!res.error) {
+        // setUser(initialState);
+        alert("You've successfully registered! Now login to complete authentication.")
+        userContext.login(() => router.push('/login'));
+      }
+    } catch (error) {
+        console.log(error)
     }
-
-    // if (res.data.message) {
-    //   alert(`${res.response.data.message}`);
-    //   setUser(initialState);
-    // } else {
-    //   resetForm();
-    // }
   }
 
   return (

@@ -33,12 +33,23 @@ export const deleteReply = (id) => {
 
 //Register User
 export const createUser = async (user) => {
-  return await axios.post('http://localhost:3050/user/register', user)
+  return await axios.post('http://localhost:3050/user/register', user, {withCredentials: true})
   .then((response) => response, err => err)
 }
 
 //Login User
 export const loginUser = async (user) => {
-  return await axios.post('http://localhost:3050/user/login', user, {credentials: true})
+  return await axios.post('http://localhost:3050/user/login', user, {withCredentials: true})
+  .then((response) => response, err => err)
+}
+
+export const profile = () => {
+  return axios.get('http://localhost:3050/me', {withCredentials: true})
+  .then((response) => response, err => err)
+}
+
+//logout
+export const logout = () => {
+  return axios.post('http://localhost:3050/logout', {withCredentials: true})
   .then((response) => response, err => err)
 }

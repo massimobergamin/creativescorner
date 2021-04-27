@@ -2,7 +2,7 @@ import Link from 'next/link';
 import moment from 'moment';
 
 const ThreadList = ({ threads, deleteHandler, loggedUser }) => {
-
+  
   return (
     <div className="threadsComponentContainer">
       
@@ -20,9 +20,10 @@ const ThreadList = ({ threads, deleteHandler, loggedUser }) => {
                 </Link>
                 {/* onClick - the reason we pass it as a function "() => deletedHandler" is to
                 avoid having the button fire when the page renders. */}
+                <h6> from { thread.username } </h6>
                 <h6 className="timeStamp">{moment(thread.date).format('MMMM Do YYYY')}</h6>
               </div>
-              {thread.username === loggedUser[0].name ? (
+              {thread.username === loggedUser.data.name ? (
               <div className="buttonContainer">
                 <button onClick={() => deleteHandler(thread.id)}className="delete">X</button>
               </div>

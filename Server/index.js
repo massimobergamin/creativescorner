@@ -12,9 +12,15 @@ const initiliazePassport = require('./passportConfig');
 
 initiliazePassport(passport);
 
-app.use(cors());
+const corsConfig = {
+  // REMOVE-START
+  origin: 'http://localhost:3000',
+  credentials: true,
+  // REMOVE-END
+};
+
+app.use(cors(corsConfig));
 app.use(express.json());
-app.use(router);
 
 app.use(
   session({
@@ -24,15 +30,16 @@ app.use(
     resave: false,
     secret: 'secret',
     cookie: {
-      maxAge: 1000 * 60 * 60, // 1hr
+      maxAge: 1000 * 60 * 60 * 2, // 2hr
       sameSite: true,
       httpOnly: false,
       // we would want to set secure=true in a production environment
       secure: false,
     },
   })
-);
-
+  );
+  
+app.use(router);
 app.use(passport.initialize);
 app.use(passport.session);
 

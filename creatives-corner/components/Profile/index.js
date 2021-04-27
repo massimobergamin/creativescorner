@@ -1,19 +1,20 @@
 import moment from 'moment';
 import Link from 'next/link';
 
-const Profile = ({loggedUser, threads}) => {
+const Profile = ({loggedUser, threads, deleteHandler}) => {
 
-  console.log(loggedUser[0].name)
+  console.log(loggedUser)
   console.log(threads)
-  const selThread = threads.filter(thread => thread.username === loggedUser[0].name)
+  const selThread = threads.filter(thread => thread.username === loggedUser.data.name)
   console.log(selThread);
 
   return (
     <div className="profileComp">
       <div className="profileCcontainer">
         <div className="headers">
-          <h2>{loggedUser[0].name}'s Threads</h2>
+          <h2>{loggedUser.data.name}'s Threads</h2>
           </div>
+          {selThread.length ? (
           <div className="selectedThreadContainer">
             <ul className="selectedThread">
             {selThread.map(thread => (
@@ -35,6 +36,17 @@ const Profile = ({loggedUser, threads}) => {
             }
             </ul>
           </div>
+
+          ) : 
+          <div className="userNoThreads">
+            <p>You have no threads!</p>
+            <Link href='./post'>
+            <a>
+            <h4 className="postThreadProfile">Post Thread</h4>
+            </a>
+            </Link>
+          </div>
+          }
       </div>
     </div>
   )

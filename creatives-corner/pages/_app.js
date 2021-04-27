@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }) {
         <div>
       <Navbar
       setLoggedUser={setLoggedUser}
+      setAuthenticated={setAuthenticated}
       />
       </div>
       ) : null

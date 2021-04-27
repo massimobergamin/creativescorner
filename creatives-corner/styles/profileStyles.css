@@ -4,9 +4,15 @@
 
 .headers {
   text-align: center;
+  margin-top: 50px;
 }
 
 .profileCcontainer {
   margin-left: 10px;
   color: white;
+}
+
+.userNoThreads {
+  text-align: center;
+  margin-top: 200px;
 }

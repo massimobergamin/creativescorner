@@ -4,7 +4,6 @@ import { loginUser } from '../../Services/Services';
 import { useRouter } from 'next/router';
 
 const LoginComponent = ({ setAuthenticated, setLoggedUser }) => {
-
   const router = useRouter();
 
   const initialState = {
@@ -23,26 +22,17 @@ const LoginComponent = ({ setAuthenticated, setLoggedUser }) => {
     }));
   };
 
-  // const resetForm = () => {
-  //   setUser(initialState);
-  // }
-
   const submitHandler = async (e) => {
     e.preventDefault();
-
     try {
       const res = await loginUser(user);
       if (!res.error) {
         setUser(initialState);
-        setAuthenticated(true);
-        setLoggedUser(res.data)
         userContext.login(() => router.push('/home'));
-        // resetForm();
       }
     } catch (error) {
       console.log(error)
     }
-
   }
 
   return (

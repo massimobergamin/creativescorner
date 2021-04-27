@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const PostThread = ({ postHandler, loggedUser }) => {
 
-  const userName = loggedUser[0].name;
+  const userName = loggedUser.data.name;
 
   const initialState = {
     title: 'title',
@@ -10,7 +10,6 @@ const PostThread = ({ postHandler, loggedUser }) => {
     content: 'details',
     user: userName
   }
-  console.log(userName);
 
   const [ topic, setTopic ] = useState(initialState);
 
@@ -27,7 +26,6 @@ const PostThread = ({ postHandler, loggedUser }) => {
   }
 
   const submitHandler = e => {
-    console.log(document.cookie)
     e.preventDefault();
     postHandler(topic);
     alert('Posted!')

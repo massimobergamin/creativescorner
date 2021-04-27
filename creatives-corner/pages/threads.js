@@ -1,10 +1,28 @@
 import ThreadList from '../components/ThreadList/index';
 import { useState, useEffect } from 'react';
-import { getThreads, deleteThread } from '../Services/Services';
+import { getThreads, deleteThread, profile} from '../Services/Services';
 import { deleteReply } from '../Services/Services';
 
-const ThreadPage = ({setLoggedUser, loggedUser}) => {
+const ThreadPage = ({setLoggedUser, loggedUser, setAuthenticated}) => {
 
+  useEffect(() => {
+    const getProfile = async () => {
+      const userInfo = await profile();
+      if (userInfo) {
+        handleAuth(userInfo);
+      }
+      else {
+        console.log('no user info found');
+        router.push('/')
+      }
+    };
+    getProfile();
+  }, []);
+
+  const handleAuth = (user) => {
+    setLoggedUser(user);
+    setAuthenticated(true)
+  }
 
   const [threads, setThreads] = useState([]);
 
